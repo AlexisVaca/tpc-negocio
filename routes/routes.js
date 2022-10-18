@@ -2,7 +2,7 @@
 const { Router } = require("express")
 const { getProductos, postProducto, getProductoByCodigo, putProducto, deleteProducto } = require("../controllers/productos.controllers")
 const { getCabecera, postCabecera, getCabeceraByCodigo, putCabecera, deleteCabecera } = require("../controllers/factura.cabecera.controllers")
-const { getDetalle, postDetalle, getDetalleByCodigo, putDetalle, deleteDetalle } = require("../controllers/factura.detalle.controllers")
+const { getDetalle, postDetalle, getDetalleByCodigo, putDetalle, deleteDetalle, getDetallesByCodigoCab } = require("../controllers/factura.detalle.controllers")
 const router = Router()
 
 //Rutas productos
@@ -22,6 +22,7 @@ router.delete("/factura/cabecera/:codigo", deleteCabecera)
 //Rutas detalles
 router.get("/factura/detalle", getDetalle)
 router.get("/factura/detalle/:codigo", getDetalleByCodigo)
+router.get("/factura/detalle/cabecera/:codigo", getDetallesByCodigoCab)
 router.post("/factura/detalle", postDetalle)
 router.put("/factura/detalle", putDetalle)
 router.delete("/factura/detalle/:codigo", deleteDetalle)

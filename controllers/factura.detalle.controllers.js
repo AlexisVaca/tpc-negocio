@@ -22,6 +22,20 @@ const getDetalleByCodigo = async (req, res) => {
   }
 };
 
+const getDetallesByCodigoCab = async (req, res) => {
+  const consulta = "select * from detalle where id_cabecera = $1;";
+  const codigo = req.params.codigo;
+  try {
+    const respuesta = await db.query(consulta, [codigo]);
+    res.status(200).json(respuesta);
+  } catch (error) {
+    res.status(400).json({
+      code: error.code,
+      message: error.message,
+    });
+  }
+};
+
 const postDetalle = async (req, res) => {
   /* 
     $1 id_detalle
@@ -95,6 +109,7 @@ module.exports = {
   getDetalle,
   postDetalle,
   getDetalleByCodigo,
+  getDetallesByCodigoCab,
   putDetalle,
   deleteDetalle
 };
